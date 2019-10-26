@@ -1,0 +1,4 @@
+__label__ham This is the first document
+__label__spam Hello, this is the second document
+__label__spam Hello, and this is the third one
+__label__ham Is this the first document?
