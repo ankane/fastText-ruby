@@ -12,6 +12,13 @@ Add this line to your application’s Gemfile:
 gem 'fasttext'
 ```
 
+## Getting Started
+
+fastText has two primary use cases:
+
+- [text classification](#text-classification)
+- [word representations](#word-representations)
+
 ## Text Classification
 
 Prep your data
