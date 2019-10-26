@@ -1,6 +1,9 @@
 # ext
 require "fasttext/ext"
 
+# stdlib
+require "tempfile"
+
 # modules
 require "fasttext/model"
 require "fasttext/classifier"
