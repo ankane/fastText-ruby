@@ -47,7 +47,7 @@ module FastText
       else
         tempfile = Tempfile.new("fasttext")
         x.each do |xi|
-          tempfile.write(xi)
+          tempfile.write(xi.gsub("\n", " ")) # replace newlines in document
           tempfile.write("\n")
         end
         tempfile.close
