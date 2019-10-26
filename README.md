@@ -240,7 +240,7 @@ model.predict("bon appétit")
 
 ## rbenv
 
-This library uses [Rice](https://github.com/jasonroelofs/rice) to interface with the fastText C++ library. Unfortunately, Rice and rbenv don’t play nicely together. This is actively [being addressed](https://github.com/rbenv/ruby-build/pull/1368), but in the meantime, if you encounter an error during installation, reinstall your Ruby version with the `--enabled-shared` flag.
+This library uses [Rice](https://github.com/jasonroelofs/rice) to interface with the fastText C++ library. Unfortunately, Rice and rbenv don’t play nicely together. This is actively [being addressed](https://github.com/rbenv/ruby-build/pull/1368), but in the meantime, if you encounter an error during installation, reinstall your Ruby version with the `--enable-shared` flag.
 
 ```sh
 CONFIGURE_OPTS="--enable-shared" rbenv install 2.6.5
