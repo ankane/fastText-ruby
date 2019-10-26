@@ -73,6 +73,14 @@ class ClassifierTest < Minitest::Test
     assert_equal model.labels, model.labels(include_freq: true).keys
   end
 
+  def test_untrained
+    model = FastText::Classifier.new
+    error = assert_raises FastText::Error do
+      model.dimension
+    end
+    assert_equal "Not fit", error.message
+  end
+
   def test_language_identification
     skip # don't want to include lid.176 with project
 
