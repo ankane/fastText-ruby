@@ -2,6 +2,8 @@
 
 [fastText](https://fasttext.cc) - efficient text classification and representation learning - for Ruby
 
+[![Build Status](https://travis-ci.org/ankane/fasttext.svg?branch=master)](https://travis-ci.org/ankane/fasttext)
+
 ## Installation
 
 Add this line to your application’s Gemfile:
