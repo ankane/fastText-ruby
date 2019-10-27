@@ -13,3 +13,5 @@ Rake::ExtensionTask.new("fasttext") do |ext|
   ext.name = "ext"
   ext.lib_dir = "lib/fasttext"
 end
+
+Rake::Task[:release].enhance [:clean]
