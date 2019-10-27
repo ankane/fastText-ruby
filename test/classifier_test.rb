@@ -26,7 +26,7 @@ class ClassifierTest < Minitest::Test
     assert model.sentence_vector("first document")
 
     assert model.predict("First document")
-    asert model.predict(["First document", "Second document"], k: 3)
+    assert model.predict(["First document", "Second document"], k: 3)
 
     # TODO fix flaky test
     # pred = model.predict("First document").first
