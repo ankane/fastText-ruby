@@ -1,7 +1,8 @@
 ## 0.1.1 [unreleased]
 
-- Add support for multiple documents to `predict` method
+- Fixed installation
 - Reduced gem size
+- Added support for multiple documents to `predict` method
 
 ## 0.1.0
 
