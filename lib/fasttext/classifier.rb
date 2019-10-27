@@ -30,11 +30,13 @@ module FastText
       m.train(DEFAULT_OPTIONS.merge(@options).merge(input: input, model: "supervised"))
     end
 
-    # TODO support array of text
+    # TODO predict multiple in C++ for performance
     def predict(text, k: 1, threshold: 0.0)
-      m.predict(prep_text(text), k, threshold).map do |v|
-        [remove_prefix(v[1]), v[0]]
-      end.to_h
+      if text.is_a?(Array)
+        text.map { |t| predict_one(t, k: k, threshold: threshold) }
+      else
+        predict_one(text, k: k, threshold: threshold)
+      end
     end
 
     def test(x, y = nil, k: 1)
@@ -63,6 +65,12 @@ module FastText
     end
 
     private
+
+    def predict_one(text, k:, threshold:)
+      m.predict(prep_text(text), k, threshold).map do |v|
+        [remove_prefix(v[1]), v[0]]
+      end.to_h
+    end
 
     def input_path(x, y)
       if x.is_a?(String)
