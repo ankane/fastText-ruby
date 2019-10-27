@@ -30,11 +30,11 @@ module FastText
       m.train(DEFAULT_OPTIONS.merge(@options).merge(input: input, model: "supervised"))
     end
 
-    # TODO predict multiple in C++ for performance
     def predict(text, k: 1, threshold: 0.0)
       multiple = text.is_a?(Array)
       text = [text] unless multiple
 
+      # TODO predict multiple in C++ for performance
       result =
         text.map do |t|
           m.predict(prep_text(t), k, threshold).map do |v|
