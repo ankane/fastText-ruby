@@ -15,4 +15,9 @@ Rake::ExtensionTask.new("fasttext") do |ext|
 end
 
 # include ext in local installs but not releases
-Rake::Task["release:guard_clean"].enhance [:clobber]
+task :remove_ext do
+  path = "lib/fasttext/ext.bundle"
+  File.unlink(path) if File.exist?(path)
+end
+
+Rake::Task["release:guard_clean"].enhance [:remove_ext]
