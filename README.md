@@ -47,7 +47,7 @@ model.fit(x, y)
 Get predictions
 
 ```ruby
-model.predict(x.first)
+model.predict(x)
 ```
 
 Save the model to a file
