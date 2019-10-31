@@ -244,7 +244,7 @@ This library uses [Rice](https://github.com/jasonroelofs/rice) to interface with
 
 ```sh
 brew upgrade ruby-build
-rbenv install 2.6.5
+rbenv install [version]
 ```
 
 ## History
