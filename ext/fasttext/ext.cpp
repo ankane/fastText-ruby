@@ -16,34 +16,6 @@ using namespace Rice;
 
 template<>
 inline
-long long from_ruby<long long>(Object x)
-{
-  return NUM2LL(x);
-}
-
-template<>
-inline
-Object to_ruby<long long>(long long const & x)
-{
-  return LL2NUM(x);
-}
-
-template<>
-inline
-unsigned long long from_ruby<unsigned long long>(Object x)
-{
-  return NUM2ULL(x);
-}
-
-template<>
-inline
-Object to_ruby<unsigned long long>(unsigned long long const & x)
-{
-  return ULL2NUM(x);
-}
-
-template<>
-inline
 Object to_ruby<std::vector<std::pair<fasttext::real, std::string>>>(std::vector<std::pair<fasttext::real, std::string>> const & x)
 {
   Array ret;

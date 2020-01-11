@@ -1,3 +1,7 @@
+## 0.1.2 (unreleased)
+
+- Fixed installation error with Ruby 2.7
+
 ## 0.1.1 (2019-10-26)
 
 - Fixed installation
