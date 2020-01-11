@@ -1,4 +1,4 @@
-## 0.1.2 (unreleased)
+## 0.1.2 (2020-01-10)
 
 - Fixed installation error with Ruby 2.7
 
