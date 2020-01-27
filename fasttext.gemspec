@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name          = "fasttext"
   spec.version       = FastText::VERSION
   spec.summary       = "fastText - efficient text classification and representation learning - for Ruby"
-  spec.homepage      = "https://github.com/ankane/fasttext"
+  spec.homepage      = "https://github.com/ankane/fastText"
   spec.license       = "MIT"
 
   spec.author        = "Andrew Kane"

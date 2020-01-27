@@ -263,8 +263,8 @@ Everyone is encouraged to help improve this project. Here are a few ways you can
 To get started with development and testing:
 
 ```sh
-git clone https://github.com/ankane/fasttext.git
-cd fasttext
+git clone https://github.com/ankane/fastText.git
+cd fastText
 bundle install
 rake compile
 rake test
