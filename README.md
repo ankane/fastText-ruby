@@ -260,12 +260,12 @@ Everyone is encouraged to help improve this project. Here are a few ways you can
 - Write, clarify, or fix documentation
 - Suggest or add new features
 
-To get started with development and testing:
+To get started with development:
 
 ```sh
 git clone https://github.com/ankane/fastText.git
 cd fastText
 bundle install
-rake compile
-rake test
+bundle exec rake compile
+bundle exec rake test
 ```
