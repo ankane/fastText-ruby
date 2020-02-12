@@ -1,10 +1,4 @@
-#include <args.h>
-#include <densematrix.h>
-#include <fasttext.h>
-#include <rice/Data_Type.hpp>
-#include <rice/Constructor.hpp>
-#include <rice/Array.hpp>
-#include <rice/Hash.hpp>
+// stdlib
 #include <real.h>
 #include <vector.h>
 #include <cmath>
@@ -12,7 +6,27 @@
 #include <sstream>
 #include <stdexcept>
 
-using namespace Rice;
+// fasttext
+#include <args.h>
+#include <densematrix.h>
+#include <fasttext.h>
+
+// rice
+#include <rice/Data_Type.hpp>
+#include <rice/Constructor.hpp>
+#include <rice/Array.hpp>
+#include <rice/Hash.hpp>
+
+using fasttext::FastText;
+
+using Rice::Array;
+using Rice::Constructor;
+using Rice::Hash;
+using Rice::Module;
+using Rice::Object;
+using Rice::define_class_under;
+using Rice::define_module;
+using Rice::define_module_under;
 
 template<>
 inline
@@ -119,11 +133,11 @@ void Init_ext()
   Module rb_mFastText = define_module("FastText");
   Module rb_mExt = define_module_under(rb_mFastText, "Ext");
 
-  define_class_under<fasttext::FastText>(rb_mExt, "Model")
-    .define_constructor(Constructor<fasttext::FastText>())
+  define_class_under<FastText>(rb_mExt, "Model")
+    .define_constructor(Constructor<FastText>())
     .define_method(
       "words",
-      *[](fasttext::FastText& m) {
+      *[](FastText& m) {
         std::shared_ptr<const fasttext::Dictionary> d = m.getDictionary();
         std::vector<int64_t> freq = d->getCounts(fasttext::entry_type::word);
 
@@ -141,7 +155,7 @@ void Init_ext()
       })
     .define_method(
       "labels",
-      *[](fasttext::FastText& m) {
+      *[](FastText& m) {
         std::shared_ptr<const fasttext::Dictionary> d = m.getDictionary();
         std::vector<int64_t> freq = d->getCounts(fasttext::entry_type::label);
 
@@ -159,7 +173,7 @@ void Init_ext()
       })
     .define_method(
       "test",
-      *[](fasttext::FastText& m, const std::string filename, int32_t k) {
+      *[](FastText& m, const std::string filename, int32_t k) {
         std::ifstream ifs(filename);
         if (!ifs.is_open()) {
           throw std::invalid_argument("Test file cannot be opened!");
@@ -176,17 +190,17 @@ void Init_ext()
       })
     .define_method(
       "load_model",
-      *[](fasttext::FastText& m, std::string s) { m.loadModel(s); })
+      *[](FastText& m, std::string s) { m.loadModel(s); })
     .define_method(
       "save_model",
-      *[](fasttext::FastText& m, std::string s) { m.saveModel(s); })
-    .define_method("dimension", &fasttext::FastText::getDimension)
-    .define_method("quantized?", &fasttext::FastText::isQuant)
-    .define_method("word_id", &fasttext::FastText::getWordId)
-    .define_method("subword_id", &fasttext::FastText::getSubwordId)
+      *[](FastText& m, std::string s) { m.saveModel(s); })
+    .define_method("dimension", &FastText::getDimension)
+    .define_method("quantized?", &FastText::isQuant)
+    .define_method("word_id", &FastText::getWordId)
+    .define_method("subword_id", &FastText::getSubwordId)
     .define_method(
       "predict",
-      *[](fasttext::FastText& m, const std::string text, int32_t k, float threshold) {
+      *[](FastText& m, const std::string text, int32_t k, float threshold) {
         std::stringstream ioss(text);
         std::vector<std::pair<fasttext::real, std::string>> predictions;
         m.predictLine(ioss, predictions, k, threshold);
@@ -194,14 +208,14 @@ void Init_ext()
       })
     .define_method(
       "nearest_neighbors",
-      *[](fasttext::FastText& m, const std::string& word, int32_t k) {
+      *[](FastText& m, const std::string& word, int32_t k) {
         return m.getNN(word, k);
       })
-    .define_method("analogies", &fasttext::FastText::getAnalogies)
-    .define_method("ngram_vectors", &fasttext::FastText::getNgramVectors)
+    .define_method("analogies", &FastText::getAnalogies)
+    .define_method("ngram_vectors", &FastText::getNgramVectors)
     .define_method(
       "word_vector",
-      *[](fasttext::FastText& m, const std::string word) {
+      *[](FastText& m, const std::string word) {
         int dimension = m.getDimension();
         fasttext::Vector vec = fasttext::Vector(dimension);
         m.getWordVector(vec, word);
@@ -214,7 +228,7 @@ void Init_ext()
       })
     .define_method(
       "subwords",
-      *[](fasttext::FastText& m, const std::string word) {
+      *[](FastText& m, const std::string word) {
         std::vector<std::string> subwords;
         std::vector<int32_t> ngrams;
         std::shared_ptr<const fasttext::Dictionary> d = m.getDictionary();
@@ -228,7 +242,7 @@ void Init_ext()
       })
     .define_method(
       "sentence_vector",
-      *[](fasttext::FastText& m, const std::string text) {
+      *[](FastText& m, const std::string text) {
         std::istringstream in(text);
         int dimension = m.getDimension();
         fasttext::Vector vec = fasttext::Vector(dimension);
@@ -242,22 +256,22 @@ void Init_ext()
       })
     .define_method(
       "train",
-      *[](fasttext::FastText& m, Hash h) {
+      *[](FastText& m, Hash h) {
         m.train(buildArgs(h));
       })
     .define_method(
       "quantize",
-      *[](fasttext::FastText& m, Hash h) {
+      *[](FastText& m, Hash h) {
         m.quantize(buildArgs(h));
       })
     .define_method(
       "supervised?",
-      *[](fasttext::FastText& m) {
+      *[](FastText& m) {
         return m.getArgs().model == fasttext::model_name::sup;
       })
     .define_method(
       "label_prefix",
-      *[](fasttext::FastText& m) {
+      *[](FastText& m) {
         return m.getArgs().label;
       });
 }
