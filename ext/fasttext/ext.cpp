@@ -1,6 +1,4 @@
 // stdlib
-#include <real.h>
-#include <vector.h>
 #include <cmath>
 #include <iterator>
 #include <sstream>
@@ -10,11 +8,13 @@
 #include <args.h>
 #include <densematrix.h>
 #include <fasttext.h>
+#include <real.h>
+#include <vector.h>
 
 // rice
-#include <rice/Data_Type.hpp>
-#include <rice/Constructor.hpp>
 #include <rice/Array.hpp>
+#include <rice/Constructor.hpp>
+#include <rice/Data_Type.hpp>
 #include <rice/Hash.hpp>
 
 using fasttext::FastText;
