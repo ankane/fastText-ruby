@@ -4,7 +4,6 @@ environment:
 
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
-  - set MAKE=nmake
   - bundle install
 
 build: off
@@ -13,6 +12,7 @@ before_test:
   - ruby -v
   - gem -v
   - bundle -v
+  - set MAKE=mingw32-make
   - bundle exec rake compile
 
 test_script:
