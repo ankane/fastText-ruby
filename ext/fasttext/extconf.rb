@@ -1,6 +1,6 @@
 require "mkmf-rice"
 
-abort "Missing stdc++" unless have_library("stdc++")
+# abort "Missing stdc++" unless have_library("stdc++")
 
 # TODO use -std=c++14 when available
 $CXXFLAGS << " -pthread -std=c++11 -funroll-loops -O3 -march=native"
