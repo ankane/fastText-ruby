@@ -12,8 +12,9 @@ before_test:
   - ruby -v
   - gem -v
   - bundle -v
-  - set MAKE=mingw32-make
-  - bundle exec rake compile
+  - bundle exec ruby ext/fasttext/extconf.rb
+  - nmake
+  - mv ext.dll lib/fasttext/ext.dll
 
 test_script:
   - bundle exec rake test
