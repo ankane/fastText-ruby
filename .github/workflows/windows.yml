@@ -15,6 +15,8 @@ jobs:
         version: 2.6.x
     - name: Build and test with Rake
       run: |
+        ls /C/hostedtoolcache/windows/Ruby/2.6.5/x64/include/ruby-2.6.0 || true
+        ls C:\hostedtoolcache\windows\Ruby\2.6.5\x64\include\ruby-2.6.0 || true
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec ruby ext/fasttext/extconf.rb
