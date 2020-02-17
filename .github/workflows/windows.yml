@@ -15,7 +15,6 @@ jobs:
         version: 2.6.x
     - name: Build and test with Rake
       run: |
-        ls /C/hostedtoolcache/windows/Ruby/2.6.5/x64/include/ruby-2.6.0
         ls C:\hostedtoolcache\windows\Ruby\2.6.5\x64\include\ruby-2.6.0
         gem install bundler
         bundle install --jobs 4 --retry 3
