@@ -19,4 +19,5 @@ jobs:
         bundle install --jobs 4 --retry 3
         bundle exec ruby ext/fasttext/extconf.rb
         make
+        mv ext.dll lib/fasttext/ext.dll
         bundle exec rake test
