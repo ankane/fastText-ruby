@@ -4,7 +4,7 @@ environment:
 
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
-  - set MAKE=mingw32-make
+  - set MAKE=nmake
   - bundle install
 
 build: off
