@@ -1,9 +1,9 @@
-name: Windows
+name: Test
 on: [push]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: [ubuntu-latest, macOS-latest, windows-latest]
     steps:
     - uses: actions/checkout@master
     - name: Set up Ruby 2.6
@@ -15,5 +15,5 @@ jobs:
         git submodule update --init --recursive
         gem install bundler
         bundle install
-        bundle exec rake compile -rdevkit --trace
+        bundle exec rake compile
         bundle exec rake test
