@@ -1,0 +1,21 @@
+environment:
+  matrix:
+    - RUBY_VERSION: "26-x64"
+
+install:
+  - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+  - bundle install
+
+build: off
+
+before_build:
+  - ruby -v
+  - gem -v
+  - bundle -v
+
+build_script:
+  - git submodule update --init --recursive
+  - bundle exec rake compile -rdevkit
+
+test_script:
+  - bundle exec rake test
