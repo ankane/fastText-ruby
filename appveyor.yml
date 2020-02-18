@@ -14,6 +14,7 @@ before_build:
   - bundle -v
 
 build_script:
+  - git submodule update --init --recursive
   - bundle exec rake compile -rdevkit
 
 test_script:
