@@ -13,7 +13,7 @@ before_test:
   - gem -v
   - bundle -v
   - bundle exec ruby ext/fasttext/extconf.rb
-  - mingw32-make
+  - mingw64-make
   - mv ext.dll lib/fasttext/ext.dll
 
 test_script:
