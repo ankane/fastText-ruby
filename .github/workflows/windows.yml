@@ -15,7 +15,6 @@ jobs:
         ruby-version: 2.6.x
     - name: Build and test with Rake
       run: |
-        ls C:\hostedtoolcache\windows\Ruby\2.6.5\x64\include\ruby-2.6.0
         gem install bundler
         bundle install
         bundle exec rake compile --trace
