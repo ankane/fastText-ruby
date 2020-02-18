@@ -1,31 +1,18 @@
 name: Windows
-
 on: [push]
 
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@master
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
-    - name: Install Bundler
-      run: |
-        gem install bundler
-      shell: cmd
     - name: Build and test with Rake
       run: |
+        gem install bundler
         bundle install
-      shell: cmd
-    - name: Compile
-      run: |
         bundle exec rake compile --trace
-      shell: cmd
-    - name: Test
-      run: |
         bundle exec rake test
-      shell: cmd
