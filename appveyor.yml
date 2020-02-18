@@ -8,13 +8,13 @@ install:
 
 build: off
 
-before_test:
+before_build:
   - ruby -v
   - gem -v
   - bundle -v
-  - bundle exec ruby ext/fasttext/extconf.rb
-  - mingw64-make
-  - mv ext.dll lib/fasttext/ext.dll
+
+build_script:
+  - bundle exec rake compile -rdevkit
 
 test_script:
   - bundle exec rake test
