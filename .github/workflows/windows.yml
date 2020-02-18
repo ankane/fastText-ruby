@@ -12,7 +12,8 @@ jobs:
         ruby-version: 2.6.x
     - name: Build and test with Rake
       run: |
+        git submodule update --init --recursive
         gem install bundler
         bundle install
-        ridk exec rake compile -rdevkit --trace
+        bundle exec rake compile -rdevkit --trace
         bundle exec rake test
