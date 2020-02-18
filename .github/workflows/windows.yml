@@ -17,6 +17,5 @@ jobs:
       run: |
         gem install bundler
         bundle install
-        bundle exec rake compile --trace
+        bundle exec rake compile -rdevkit --trace
         bundle exec rake test
-      shell: cmd
