@@ -3,7 +3,10 @@ on: [push]
 
 jobs:
   build:
-    runs-on: [ubuntu-latest, macOS-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
     steps:
     - uses: actions/checkout@master
     - name: Set up Ruby 2.6
