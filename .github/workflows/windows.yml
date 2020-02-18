@@ -19,3 +19,4 @@ jobs:
         bundle install
         bundle exec rake compile -rdevkit --trace
         bundle exec rake test
+      shell: cmd
