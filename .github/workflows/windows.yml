@@ -20,6 +20,12 @@ jobs:
     - name: Build and test with Rake
       run: |
         bundle install
+      shell: cmd
+    - name: Compile
+      run: |
         bundle exec rake compile --trace
+      shell: cmd
+    - name: Test
+      run: |
         bundle exec rake test
       shell: cmd
