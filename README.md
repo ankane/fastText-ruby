@@ -2,7 +2,7 @@
 
 [fastText](https://fasttext.cc) - efficient text classification and representation learning - for Ruby
 
-[![Build Status](https://travis-ci.org/ankane/fasttext.svg?branch=master)](https://travis-ci.org/ankane/fasttext)
+[![Build Status](https://travis-ci.org/ankane/fasttext.svg?branch=master)](https://travis-ci.org/ankane/fasttext) [![Build status](https://ci.appveyor.com/api/projects/status/67yby3w6mth766y9/branch/master?svg=true)](https://ci.appveyor.com/project/ankane/fasttext/branch/master)
 
 ## Installation
 
