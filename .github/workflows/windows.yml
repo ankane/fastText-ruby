@@ -14,5 +14,5 @@ jobs:
       run: |
         gem install bundler
         bundle install
-        bundle exec rake compile -rdevkit --trace
+        ridk exec rake compile -rdevkit --trace
         bundle exec rake test
