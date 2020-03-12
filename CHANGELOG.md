@@ -1,3 +1,7 @@
+## 0.1.3 (unreleased)
+
+- Added `--with-optflags` option
+
 ## 0.1.2 (2020-01-10)
 
 - Fixed installation error with Ruby 2.7
