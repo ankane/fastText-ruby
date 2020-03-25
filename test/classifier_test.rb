@@ -65,6 +65,8 @@ class ClassifierTest < Minitest::Test
   end
 
   def test_autotune
+    skip "Takes too much memory" if ENV["TRAVIS"]
+
     x = [
       "This is the first document",
       "Hello, this is the second document",
@@ -78,6 +80,8 @@ class ClassifierTest < Minitest::Test
   end
 
   def test_autotune_file
+    skip "Takes too much memory" if ENV["TRAVIS"]
+
     x = [
       "This is the first document",
       "Hello, this is the second document",
@@ -118,7 +122,7 @@ class ClassifierTest < Minitest::Test
   end
 
   def test_language_identification
-    skip # don't want to include lid.176 with project
+    skip "Don't want to include lid.176 with project"
 
     model = FastText.load_model("path/to/lid.176.ftz")
     p model.predict("bon appétit")
