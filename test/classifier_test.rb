@@ -10,7 +10,7 @@ class ClassifierTest < Minitest::Test
     ]
     y = ["ham", "spam", "spam", "ham"]
 
-    model = FastText::Classifier.new
+    model = FastText::Classifier.new(seed: 123, thread: 1)
     model.fit(x, y)
 
     assert_equal 100, model.dimension
@@ -28,10 +28,9 @@ class ClassifierTest < Minitest::Test
     assert model.predict("First document")
     assert model.predict(["First document", "Second document"], k: 3)
 
-    # TODO fix flaky test
-    # pred = model.predict("First document").first
-    # assert_equal "ham", pred[0]
-    # assert_in_delta 0.50003284, pred[1]
+    pred = model.predict("First document").first
+    assert_equal "ham", pred[0]
+    assert_in_delta 0.50003284, pred[1]
 
     result = model.test(x, y)
     assert_equal 4, result[:examples]
