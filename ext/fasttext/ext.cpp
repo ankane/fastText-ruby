@@ -6,6 +6,7 @@
 
 // fasttext
 #include <args.h>
+#include <autotune.h>
 #include <densematrix.h>
 #include <fasttext.h>
 #include <real.h>
@@ -118,8 +119,18 @@ fasttext::Args buildArgs(Hash h) {
       a.pretrainedVectors = from_ruby<std::string>(value);
     } else if (name == "save_output") {
       a.saveOutput = from_ruby<bool>(value);
-    // } else if (name == "seed") {
-    //   a.seed = from_ruby<int>(value);
+    } else if (name == "seed") {
+      a.seed = from_ruby<int>(value);
+    } else if (name == "autotune_validation_file") {
+      a.autotuneValidationFile = from_ruby<std::string>(value);
+    } else if (name == "autotune_metric") {
+      a.autotuneMetric = from_ruby<std::string>(value);
+    } else if (name == "autotune_predictions") {
+      a.autotunePredictions = from_ruby<int>(value);
+    } else if (name == "autotune_duration") {
+      a.autotuneDuration = from_ruby<int>(value);
+    } else if (name == "autotune_model_size") {
+      a.autotuneModelSize = from_ruby<std::string>(value);
     } else {
       throw std::invalid_argument("Unknown argument: " + name);
     }
@@ -257,7 +268,13 @@ void Init_ext()
     .define_method(
       "train",
       *[](FastText& m, Hash h) {
-        m.train(buildArgs(h));
+        auto a = buildArgs(h);
+        if (a.hasAutotune()) {
+          fasttext::Autotune autotune(std::shared_ptr<fasttext::FastText>(&m, [](fasttext::FastText*) {}));
+          autotune.train(a);
+        } else {
+          m.train(a);
+        }
       })
     .define_method(
       "quantize",

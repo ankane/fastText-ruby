@@ -75,6 +75,14 @@ class ClassifierTest < Minitest::Test
     assert_equal model.labels, model.labels(include_freq: true).keys
   end
 
+  def test_train_supervised_autotune
+    FastText.train_supervised(
+      input: "test/support/supervised.txt",
+      autotune_validation_file: "test/support/supervised.txt",
+      autotune_duration: 5
+    )
+  end
+
   def test_untrained
     model = FastText::Classifier.new
     error = assert_raises FastText::Error do
