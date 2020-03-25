@@ -75,13 +75,13 @@ model.words
 model.labels
 ```
 
+> Use `include_freq: true` to get their frequency
+
 Search for the best hyperparameters [master]
 
 ```ruby
 model.fit(x, y, autotune_set: [x_valid, y_valid])
 ```
-
-> Use `include_freq: true` to get their frequency
 
 Compress the model - significantly reduces size but sacrifices a little performance
 
