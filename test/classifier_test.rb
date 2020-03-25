@@ -105,10 +105,12 @@ class ClassifierTest < Minitest::Test
   end
 
   def test_train_supervised_autotune
+    skip "Takes too much memory" if ENV["TRAVIS"]
+
     FastText.train_supervised(
       input: "test/support/supervised.txt",
       autotune_validation_file: "test/support/supervised.txt",
-      autotune_duration: 5
+      autotune_duration: 2
     )
   end
 
