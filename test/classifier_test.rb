@@ -64,6 +64,32 @@ class ClassifierTest < Minitest::Test
     assert_equal model.labels, model.labels(include_freq: true).keys
   end
 
+  def test_autotune
+    x = [
+      "This is the first document",
+      "Hello, this is the second document",
+      "Hello, and this is the third one",
+      "Is this the first document?"
+    ]
+    y = ["ham", "spam", "spam", "ham"]
+
+    model = FastText::Classifier.new(autotune_duration: 2)
+    model.fit(x, y, autotune_set: [x, y])
+  end
+
+  def test_autotune_file
+    x = [
+      "This is the first document",
+      "Hello, this is the second document",
+      "Hello, and this is the third one",
+      "Is this the first document?"
+    ]
+    y = ["ham", "spam", "spam", "ham"]
+
+    model = FastText::Classifier.new(autotune_duration: 2)
+    model.fit("test/support/supervised.txt", autotune_set: "test/support/supervised.txt")
+  end
+
   def test_train_supervised
     model = FastText.train_supervised(input: "test/support/supervised.txt")
 

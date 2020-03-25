@@ -24,10 +24,15 @@ module FastText
       # seed: 0
     }
 
-    def fit(x, y = nil)
+    def fit(x, y = nil, autotune_set: nil)
       input = input_path(x, y)
       @m ||= Ext::Model.new
-      m.train(DEFAULT_OPTIONS.merge(@options).merge(input: input, model: "supervised"))
+      opts = DEFAULT_OPTIONS.merge(@options).merge(input: input, model: "supervised")
+      if autotune_set
+        x, y = autotune_set
+        opts.merge!(autotune_validation_file: input_path(x, y))
+      end
+      m.train(opts)
     end
 
     def predict(text, k: 1, threshold: 0.0)

@@ -75,6 +75,12 @@ model.words
 model.labels
 ```
 
+Search for best hyperparameters [master]
+
+```ruby
+model.fit(x, y, autotune_set: [x_valid, y_valid])
+```
+
 > Use `include_freq: true` to get their frequency
 
 Compress the model - significantly reduces size but sacrifices a little performance
@@ -168,7 +174,11 @@ FastText::Classifier.new(
   t: 0.0001,                  # sampling threshold
   label_prefix: "__label__"   # label prefix
   verbose: 2,                 # verbose
-  pretrained_vectors: nil     # pretrained word vectors (.vec file)
+  pretrained_vectors: nil,    # pretrained word vectors (.vec file)
+  autotune_metric: "f1",      # autotune optimization metric [master]
+  autotune_predictions: 1,    # autotune predictions [master]
+  autotune_duration: 300,     # autotune search time in seconds [master]
+  autotune_model_size: nil    # autotune model size, like 2M [master]
 )
 ```
 
@@ -200,7 +210,7 @@ FastText::Vectorizer.new(
 Input can be read directly from files
 
 ```ruby
-model.fit("train.txt")
+model.fit("train.txt", autotune_set: "valid.txt")
 model.test("test.txt")
 ```
 
