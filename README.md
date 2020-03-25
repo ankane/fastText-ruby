@@ -75,7 +75,7 @@ model.words
 model.labels
 ```
 
-Search for best hyperparameters [master]
+Search for the best hyperparameters [master]
 
 ```ruby
 model.fit(x, y, autotune_set: [x_valid, y_valid])
