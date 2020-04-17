@@ -126,6 +126,6 @@ class ClassifierTest < Minitest::Test
     skip "Don't want to include lid.176 with project"
 
     model = FastText.load_model("path/to/lid.176.ftz")
-    p model.predict("bon appétit")
+    assert_equal ["fr"], model.predict("bon appétit").keys
   end
 end
