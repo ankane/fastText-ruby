@@ -21,7 +21,12 @@ module FastText
       verbose: 2,
       pretrained_vectors: "",
       save_output: false,
-      # seed: 0
+      seed: 0,
+      autotune_validation_file: "",
+      autotune_metric: "f1",
+      autotune_predictions: 1,
+      autotune_duration: 60 * 5,
+      autotune_model_size: ""
     }
 
     def fit(x, y = nil, autotune_set: nil)
