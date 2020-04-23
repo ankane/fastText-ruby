@@ -14,7 +14,6 @@ Rake::ExtensionTask.new("fasttext") do |ext|
   ext.lib_dir = "lib/fasttext"
 end
 
-# include ext in local installs but not releases
 task :remove_ext do
   path = "lib/fasttext/ext.bundle"
   File.unlink(path) if File.exist?(path)
