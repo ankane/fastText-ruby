@@ -2,7 +2,6 @@
 
 - Added support for autotune
 - Added `--with-optflags` option
-- Reduced gem size
 
 ## 0.1.2 (2020-01-10)
 
