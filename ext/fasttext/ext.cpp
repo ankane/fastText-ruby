@@ -189,7 +189,7 @@ void Init_ext()
         if (!ifs.is_open()) {
           throw std::invalid_argument("Test file cannot be opened!");
         }
-        fasttext::Meter meter;
+        fasttext::Meter meter(false);
         m.test(ifs, k, 0.0, meter);
         ifs.close();
 

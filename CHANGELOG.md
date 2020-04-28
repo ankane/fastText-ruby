@@ -1,5 +1,6 @@
 ## 0.1.3 (unreleased)
 
+- Updated fastText to 0.9.2
 - Added support for autotune
 - Added `--with-optflags` option
 
