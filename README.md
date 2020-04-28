@@ -77,7 +77,7 @@ model.labels
 
 > Use `include_freq: true` to get their frequency
 
-Search for the best hyperparameters [master]
+Search for the best hyperparameters
 
 ```ruby
 model.fit(x, y, autotune_set: [x_valid, y_valid])
@@ -175,10 +175,10 @@ FastText::Classifier.new(
   label_prefix: "__label__"   # label prefix
   verbose: 2,                 # verbose
   pretrained_vectors: nil,    # pretrained word vectors (.vec file)
-  autotune_metric: "f1",      # autotune optimization metric [master]
-  autotune_predictions: 1,    # autotune predictions [master]
-  autotune_duration: 300,     # autotune search time in seconds [master]
-  autotune_model_size: nil    # autotune model size, like 2M [master]
+  autotune_metric: "f1",      # autotune optimization metric
+  autotune_predictions: 1,    # autotune predictions
+  autotune_duration: 300,     # autotune search time in seconds
+  autotune_model_size: nil    # autotune model size, like 2M
 )
 ```
 

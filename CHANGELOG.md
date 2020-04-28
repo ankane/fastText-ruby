@@ -1,4 +1,4 @@
-## 0.1.3 (unreleased)
+## 0.1.3 (2020-04-28)
 
 - Updated fastText to 0.9.2
 - Added support for autotune
