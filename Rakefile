@@ -14,9 +14,13 @@ Rake::ExtensionTask.new("fasttext") do |ext|
   ext.lib_dir = "lib/fasttext"
 end
 
+task :check_license do
+  raise "Missing vendor license" unless File.exist?("vendor/fastText/LICENSE")
+end
+
 task :remove_ext do
   path = "lib/fasttext/ext.bundle"
   File.unlink(path) if File.exist?(path)
 end
 
-Rake::Task["build"].enhance [:remove_ext]
+Rake::Task["build"].enhance [:check_license, :remove_ext]
