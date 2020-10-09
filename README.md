@@ -273,7 +273,7 @@ Everyone is encouraged to help improve this project. Here are a few ways you can
 To get started with development:
 
 ```sh
-git clone https://github.com/ankane/fastText.git
+git clone --recursive https://github.com/ankane/fastText.git
 cd fastText
 bundle install
 bundle exec rake compile
