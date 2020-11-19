@@ -16,5 +16,7 @@ jobs:
       with:
         ruby-version: 2.7
         bundler-cache: true
+    - if: ${{ startsWith(matrix.os, 'macos') }}
+      run: brew install automake
     - run: bundle exec rake compile
     - run: bundle exec rake test
