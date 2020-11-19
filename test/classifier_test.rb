@@ -64,7 +64,7 @@ class ClassifierTest < Minitest::Test
   end
 
   def test_autotune
-    skip "Takes too much memory" if ENV["TRAVIS"]
+    skip "Takes too much memory" if ci?
 
     x = [
       "This is the first document",
@@ -79,7 +79,7 @@ class ClassifierTest < Minitest::Test
   end
 
   def test_autotune_file
-    skip "Takes too much memory" if ENV["TRAVIS"]
+    skip "Takes too much memory" if ci?
 
     x = [
       "This is the first document",
@@ -105,7 +105,7 @@ class ClassifierTest < Minitest::Test
   end
 
   def test_train_supervised_autotune
-    skip "Takes too much memory" if ENV["TRAVIS"]
+    skip "Takes too much memory" if ci?
 
     FastText.train_supervised(
       input: "test/support/supervised.txt",
@@ -127,5 +127,9 @@ class ClassifierTest < Minitest::Test
 
     model = FastText.load_model("path/to/lid.176.ftz")
     assert_equal ["fr"], model.predict("bon appétit").keys
+  end
+
+  def ci?
+    ENV["CI"]
   end
 end
