@@ -172,7 +172,7 @@ FastText::Classifier.new(
   thread: 3,                  # number of threads
   lr_update_rate: 100,        # change the rate of updates for the learning rate
   t: 0.0001,                  # sampling threshold
-  label_prefix: "__label__"   # label prefix
+  label_prefix: "__label__",  # label prefix
   verbose: 2,                 # verbose
   pretrained_vectors: nil,    # pretrained word vectors (.vec file)
   autotune_metric: "f1",      # autotune optimization metric
