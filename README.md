@@ -127,6 +127,12 @@ Get a word vector
 model.word_vector("carrot")
 ```
 
+Get a sentence vector
+
+```ruby
+model.sentence_vector("sentence text")
+```
+
 Get words
 
 ```ruby
