@@ -238,7 +238,7 @@ __label__spam text from document three
 
 ## Pretrained Models
 
-There are a number of [pretrained models](https://fasttext.cc/docs/en/english-vectors.html) you can download
+There are a number of [pretrained models](https://fasttext.cc/docs/en/supervised-models.html) you can download
 
 ### Language Identification
 
