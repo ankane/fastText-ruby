@@ -1,3 +1,8 @@
+## 0.2.0 (unreleased)
+
+- Updated to Rice 4
+- Dropped support for Ruby < 2.6
+
 ## 0.1.3 (2020-04-28)
 
 - Updated fastText to 0.9.2

@@ -254,15 +254,6 @@ Get language predictions
 model.predict("bon appétit")
 ```
 
-## rbenv
-
-This library uses [Rice](https://github.com/jasonroelofs/rice) to interface with the fastText C++ library. Rice and earlier versions of rbenv don’t play nicely together. If you encounter an error during installation, upgrade ruby-build and reinstall your Ruby version.
-
-```sh
-brew upgrade ruby-build
-rbenv install [version]
-```
-
 ## History
 
 View the [changelog](https://github.com/ankane/fasttext/blob/master/CHANGELOG.md)
