@@ -1,4 +1,4 @@
-## 0.2.0 (unreleased)
+## 0.2.0 (2021-05-17)
 
 - Updated to Rice 4
 - Dropped support for Ruby < 2.6
