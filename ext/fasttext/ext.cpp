@@ -50,14 +50,10 @@ namespace Rice::detail
 fasttext::Args buildArgs(Hash h) {
   fasttext::Args a;
 
-  std::vector<Hash::Entry> v;
-  Hash::iterator it = h.begin();
-  Hash::iterator end = h.end();
-
-  for(; it != end; ++it)
+  for (const auto& it : h)
   {
-    std::string name = it->key.to_s().str();
-    VALUE value = (it->value).value();
+    auto name = it.key.to_s().str();
+    auto value = (it.value).value();
 
     if (name == "input") {
       a.input = Rice::detail::From_Ruby<std::string>().convert(value);
