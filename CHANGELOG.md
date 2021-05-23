@@ -1,3 +1,7 @@
+## 0.2.1 (unreleased)
+
+- Improved performance
+
 ## 0.2.0 (2021-05-17)
 
 - Updated to Rice 4
