@@ -1,4 +1,4 @@
-## 0.2.1 (unreleased)
+## 0.2.1 (2021-05-23)
 
 - Improved performance
 
