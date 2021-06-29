@@ -4,7 +4,7 @@ require "mkmf-rice"
 $CXXFLAGS << " -std=c++17 $(optflags) -funroll-loops "
 
 # Add -march=native if we're not on arm64
-if defined?(RUBY_PLATFORM) == 'constant' && RUBY_PLATFORM.split('-') != 'arm64'
+if defined?(RUBY_PLATFORM) == 'constant' && RUBY_PLATFORM.split('-')[0] != 'arm64'
   $CXXFLAGS << with_config("optflags", "-march=native")
 end
 
