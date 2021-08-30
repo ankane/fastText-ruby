@@ -32,12 +32,14 @@ module FastText
     def fit(x, y = nil, autotune_set: nil)
       input = input_path(x, y)
       @m ||= Ext::Model.new
-      opts = DEFAULT_OPTIONS.merge(@options).merge(input: input, model: "supervised")
+      a = build_args(DEFAULT_OPTIONS)
+      a.input = input
+      a.model = "supervised"
       if autotune_set
         x, y = autotune_set
-        opts.merge!(autotune_validation_file: input_path(x, y))
+        a.autotune_validation_file = input_path(x, y)
       end
-      m.train(opts)
+      m.train(a)
     end
 
     def predict(text, k: 1, threshold: 0.0)
@@ -67,7 +69,8 @@ module FastText
 
     # TODO support options
     def quantize
-      m.quantize({})
+      a = Ext::Args.new
+      m.quantize(a)
     end
 
     def labels(include_freq: false)

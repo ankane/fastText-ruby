@@ -56,5 +56,15 @@ module FastText
     def m
       @m || (raise Error, "Not fit")
     end
+
+    def build_args(default_options)
+      a = Ext::Args.new
+      opts = @options.dup
+      default_options.each do |k, v|
+        a.send("#{k}=", opts.delete(k) || v)
+      end
+      raise ArgumentError, "Unknown argument: #{opts.keys.first}" if opts.any?
+      a
+    end
   end
 end

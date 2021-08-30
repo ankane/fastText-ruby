@@ -29,9 +29,10 @@ module FastText
     }
 
     def fit(x)
-      input = input_path(x)
       @m ||= Ext::Model.new
-      m.train(DEFAULT_OPTIONS.merge(@options).merge(input: input))
+      a = build_args(DEFAULT_OPTIONS)
+      a.input = input_path(x)
+      m.train(a)
     end
 
     def nearest_neighbors(word, k: 10)
