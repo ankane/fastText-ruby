@@ -21,9 +21,7 @@ using fasttext::FastText;
 
 using Rice::Array;
 using Rice::Constructor;
-using Rice::Hash;
 using Rice::Module;
-using Rice::Object;
 using Rice::define_class_under;
 using Rice::define_module;
 using Rice::define_module_under;
