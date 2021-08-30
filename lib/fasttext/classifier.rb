@@ -49,9 +49,9 @@ module FastText
       # TODO predict multiple in C++ for performance
       result =
         text.map do |t|
-          m.predict(prep_text(t), k, threshold).map do |v|
+          m.predict(prep_text(t), k, threshold).to_h do |v|
             [remove_prefix(v[1]), v[0]]
-          end.to_h
+          end
         end
 
       multiple ? result : result.first
