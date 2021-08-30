@@ -196,13 +196,12 @@ void Init_ext()
     .define_method(
       "word_vector",
       [](FastText& m, const std::string& word) {
-        int dimension = m.getDimension();
+        auto dimension = m.getDimension();
         fasttext::Vector vec = fasttext::Vector(dimension);
         m.getWordVector(vec, word);
-        float* data = vec.data();
         Array ret;
-        for (int i = 0; i < dimension; i++) {
-          ret.push(data[i]);
+        for (size_t i = 0; i < vec.size(); i++) {
+          ret.push(vec[i]);
         }
         return ret;
       })
@@ -224,13 +223,12 @@ void Init_ext()
       "sentence_vector",
       [](FastText& m, const std::string& text) {
         std::istringstream in(text);
-        int dimension = m.getDimension();
+        auto dimension = m.getDimension();
         fasttext::Vector vec = fasttext::Vector(dimension);
         m.getSentenceVector(in, vec);
-        float* data = vec.data();
         Array ret;
-        for (int i = 0; i < dimension; i++) {
-          ret.push(data[i]);
+        for (size_t i = 0; i < vec.size(); i++) {
+          ret.push(vec[i]);
         }
         return ret;
       })
