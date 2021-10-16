@@ -1,4 +1,4 @@
-## 0.2.2 (unreleased)
+## 0.2.2 (2021-10-16)
 
 - Fixed `file cannot be opened` errors
 
