@@ -30,14 +30,14 @@ module FastText
     }
 
     def fit(x, y = nil, autotune_set: nil)
-      input = input_path(x, y)
+      input, _ref = input_path(x, y)
       @m ||= Ext::Model.new
       a = build_args(DEFAULT_OPTIONS)
       a.input = input
       a.model = "supervised"
       if autotune_set
         x, y = autotune_set
-        a.autotune_validation_file = input_path(x, y)
+        a.autotune_validation_file, _autotune_ref = input_path(x, y)
       end
       m.train(a)
     end
@@ -58,7 +58,7 @@ module FastText
     end
 
     def test(x, y = nil, k: 1)
-      input = input_path(x, y)
+      input, _ref = input_path(x, y)
       res = m.test(input, k)
       {
         examples: res[0],
@@ -88,7 +88,7 @@ module FastText
     def input_path(x, y)
       if x.is_a?(String)
         raise ArgumentError, "Cannot pass y with file" if y
-        x
+        [x, nil]
       else
         tempfile = Tempfile.new("fasttext")
         x.zip(y) do |xi, yi|
@@ -98,7 +98,7 @@ module FastText
           tempfile.write("\n")
         end
         tempfile.close
-        tempfile.path
+        [tempfile.path, tempfile]
       end
     end
 

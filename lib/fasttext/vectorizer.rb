@@ -31,7 +31,7 @@ module FastText
     def fit(x)
       @m ||= Ext::Model.new
       a = build_args(DEFAULT_OPTIONS)
-      a.input = input_path(x)
+      a.input, _ref = input_path(x)
       m.train(a)
     end
 
@@ -49,7 +49,7 @@ module FastText
     # https://github.com/facebookresearch/fastText/issues/518
     def input_path(x)
       if x.is_a?(String)
-        x
+        [x, nil]
       else
         tempfile = Tempfile.new("fasttext")
         x.each do |xi|
@@ -57,7 +57,7 @@ module FastText
           tempfile.write("\n")
         end
         tempfile.close
-        tempfile.path
+        [tempfile.path, tempfile]
       end
     end
   end
