@@ -3,8 +3,8 @@ require_relative "lib/fasttext/version"
 Gem::Specification.new do |spec|
   spec.name          = "fasttext"
   spec.version       = FastText::VERSION
-  spec.summary       = "fastText - efficient text classification and representation learning - for Ruby"
-  spec.homepage      = "https://github.com/ankane/fastText"
+  spec.summary       = "Efficient text classification and representation learning for Ruby"
+  spec.homepage      = "https://github.com/ankane/fastText-ruby"
   spec.license       = "MIT"
 
   spec.author        = "Andrew Kane"
