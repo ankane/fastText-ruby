@@ -1,12 +1,8 @@
 require "mkmf-rice"
 
 # -pthread and -O3 set by default
-$CXXFLAGS << " -std=c++17 $(optflags) -funroll-loops "
-
-# Add -march=native if we're not on arm64
-if defined?(RUBY_PLATFORM) == 'constant' && RUBY_PLATFORM.split('-')[0] != 'arm64'
-  $CXXFLAGS << with_config("optflags", "-march=native")
-end
+default_optflags = RbConfig::CONFIG["host_os"] =~ /darwin/i && RbConfig::CONFIG["host_cpu"] =~ /arm/i ? "" : "-march=native"
+$CXXFLAGS << " -std=c++17 $(optflags) -funroll-loops " << with_config("optflags", default_optflags)
 
 ext = File.expand_path(".", __dir__)
 fasttext = File.expand_path("../../vendor/fastText/src", __dir__)
