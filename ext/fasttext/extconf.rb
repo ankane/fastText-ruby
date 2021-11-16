@@ -1,7 +1,8 @@
 require "mkmf-rice"
 
-# -pthread and -O3 set by default
+# -march=native not supported with ARM Mac
 default_optflags = RbConfig::CONFIG["host_os"] =~ /darwin/i && RbConfig::CONFIG["host_cpu"] =~ /arm/i ? "" : "-march=native"
+# -pthread and -O3 set by default
 $CXXFLAGS << " -std=c++17 $(optflags) -funroll-loops " << with_config("optflags", default_optflags)
 
 ext = File.expand_path(".", __dir__)
