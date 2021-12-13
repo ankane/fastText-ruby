@@ -1,3 +1,7 @@
+## 0.2.4 (unreleased)
+
+- Improved ARM detection
+
 ## 0.2.3 (2021-11-15)
 
 - Fixed installation error with ARM Mac
