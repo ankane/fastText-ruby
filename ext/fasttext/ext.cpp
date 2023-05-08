@@ -26,24 +26,17 @@ using Rice::define_class_under;
 using Rice::define_module;
 using Rice::define_module_under;
 
-namespace Rice::detail
+// use function since overriding vector conversion can cause segfaults
+Array ruby_array(std::vector<std::pair<fasttext::real, std::string>> const & x)
 {
-  template<>
-  class To_Ruby<std::vector<std::pair<fasttext::real, std::string>>>
-  {
-  public:
-    VALUE convert(std::vector<std::pair<fasttext::real, std::string>> const & x)
-    {
-      Array ret;
-      for (const auto& v : x) {
-        Array a;
-        a.push(v.first);
-        a.push(v.second);
-        ret.push(a);
-      }
-      return ret;
-    }
-  };
+  Array ret;
+  for (const auto& v : x) {
+    Array a;
+    a.push(v.first);
+    a.push(v.second);
+    ret.push(a);
+  }
+  return ret;
 }
 
 extern "C"
@@ -184,14 +177,18 @@ void Init_ext()
         std::stringstream ioss(text);
         std::vector<std::pair<fasttext::real, std::string>> predictions;
         m.predictLine(ioss, predictions, k, threshold);
-        return predictions;
+        return ruby_array(predictions);
       })
     .define_method(
       "nearest_neighbors",
       [](FastText& m, const std::string& word, int32_t k) {
-        return m.getNN(word, k);
+        return ruby_array(m.getNN(word, k));
       })
-    .define_method("analogies", &FastText::getAnalogies)
+    .define_method(
+      "analogies",
+      [](FastText& m, int32_t k, const std::string& wordA, const std::string& wordB, const std::string& wordC) {
+        return ruby_array(m.getAnalogies(k, wordA, wordB, wordC));
+      })
     // .define_method("ngram_vectors", &FastText::getNgramVectors)
     .define_method(
       "word_vector",
