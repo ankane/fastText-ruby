@@ -1,5 +1,6 @@
 // stdlib
 #include <cmath>
+#include <cstdint>
 #include <iterator>
 #include <sstream>
 #include <stdexcept>
