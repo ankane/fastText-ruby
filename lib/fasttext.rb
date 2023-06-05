@@ -5,10 +5,10 @@ require "fasttext/ext"
 require "tempfile"
 
 # modules
-require "fasttext/model"
-require "fasttext/classifier"
-require "fasttext/vectorizer"
-require "fasttext/version"
+require_relative "fasttext/model"
+require_relative "fasttext/classifier"
+require_relative "fasttext/vectorizer"
+require_relative "fasttext/version"
 
 module FastText
   class Error < StandardError; end
