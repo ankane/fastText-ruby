@@ -1,4 +1,4 @@
-## 0.3.0 (unreleased)
+## 0.3.0 (2023-07-24)
 
 - Fixed installation error on Windows
 - Dropped support for Ruby < 3
