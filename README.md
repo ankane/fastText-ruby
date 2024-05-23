@@ -2,7 +2,7 @@
 
 [fastText](https://fasttext.cc) - efficient text classification and representation learning - for Ruby
 
-[![Build Status](https://github.com/ankane/fastText-ruby/workflows/build/badge.svg?branch=master)](https://github.com/ankane/fastText-ruby/actions)
+[![Build Status](https://github.com/ankane/fastText-ruby/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/fastText-ruby/actions)
 
 ## Installation
 
