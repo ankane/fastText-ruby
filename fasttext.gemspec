@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.require_path  = "lib"
   spec.extensions    = ["ext/fasttext/extconf.rb"]
 
-  spec.required_ruby_version = ">= 3"
+  spec.required_ruby_version = ">= 3.1"
 
   spec.add_dependency "rice", ">= 4.0.2"
 end
