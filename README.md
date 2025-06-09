@@ -167,8 +167,8 @@ FastText::Classifier.new(
   dim: 100,                   # size of word vectors
   ws: 5,                      # size of the context window
   epoch: 5,                   # number of epochs
-  min_count: 1,               # minimal number of word occurences
-  min_count_label: 1,         # minimal number of label occurences
+  min_count: 1,               # minimal number of word occurrences
+  min_count_label: 1,         # minimal number of label occurrences
   minn: 0,                    # min length of char ngram
   maxn: 0,                    # max length of char ngram
   neg: 5,                     # number of negatives sampled
@@ -197,7 +197,7 @@ FastText::Vectorizer.new(
   dim: 100,                   # size of word vectors
   ws: 5,                      # size of the context window
   epoch: 5,                   # number of epochs
-  min_count: 5,               # minimal number of word occurences
+  min_count: 5,               # minimal number of word occurrences
   minn: 3,                    # min length of char ngram
   maxn: 6,                    # max length of char ngram
   neg: 5,                     # number of negatives sampled
