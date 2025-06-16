@@ -2,8 +2,11 @@
 #include <cmath>
 #include <cstdint>
 #include <iterator>
+#include <memory>
 #include <sstream>
 #include <stdexcept>
+#include <string>
+#include <vector>
 
 // fasttext
 #include <args.h>
@@ -21,20 +24,12 @@ using fasttext::Args;
 using fasttext::FastText;
 
 using Rice::Array;
-using Rice::Constructor;
-using Rice::Module;
-using Rice::define_class_under;
-using Rice::define_module;
-using Rice::define_module_under;
 
-namespace Rice::detail
-{
+namespace Rice::detail {
   template<>
-  class To_Ruby<std::vector<std::pair<fasttext::real, std::string>>>
-  {
+  class To_Ruby<std::vector<std::pair<fasttext::real, std::string>>> {
   public:
-    VALUE convert(std::vector<std::pair<fasttext::real, std::string>> const & x)
-    {
+    VALUE convert(std::vector<std::pair<fasttext::real, std::string>> const & x) {
       Array ret;
       for (const auto& v : x) {
         Array a;
@@ -45,16 +40,15 @@ namespace Rice::detail
       return ret;
     }
   };
-}
+} // namespace Rice::detail
 
 extern "C"
-void Init_ext()
-{
-  Module rb_mFastText = define_module("FastText");
-  Module rb_mExt = define_module_under(rb_mFastText, "Ext");
+void Init_ext() {
+  Rice::Module rb_mFastText = Rice::define_module("FastText");
+  Rice::Module rb_mExt = Rice::define_module_under(rb_mFastText, "Ext");
 
-  define_class_under<Args>(rb_mExt, "Args")
-    .define_constructor(Constructor<Args>())
+  Rice::define_class_under<Args>(rb_mExt, "Args")
+    .define_constructor(Rice::Constructor<Args>())
     .define_attr("input", &Args::input)
     .define_attr("output", &Args::output)
     .define_attr("lr", &Args::lr)
@@ -110,8 +104,8 @@ void Init_ext()
     .define_attr("autotune_duration", &Args::autotuneDuration)
     .define_attr("autotune_model_size", &Args::autotuneModelSize);
 
-  define_class_under<FastText>(rb_mExt, "Model")
-    .define_constructor(Constructor<FastText>())
+  Rice::define_class_under<FastText>(rb_mExt, "Model")
+    .define_constructor(Rice::Constructor<FastText>())
     .define_method(
       "words",
       [](FastText& m) {
