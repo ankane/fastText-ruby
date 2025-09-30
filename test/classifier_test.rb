@@ -81,14 +81,6 @@ class ClassifierTest < Minitest::Test
   def test_autotune_file
     skip "Takes too much memory" if ci?
 
-    x = [
-      "This is the first document",
-      "Hello, this is the second document",
-      "Hello, and this is the third one",
-      "Is this the first document?"
-    ]
-    y = ["ham", "spam", "spam", "ham"]
-
     model = FastText::Classifier.new(autotune_duration: 2)
     model.fit("test/support/supervised.txt", autotune_set: "test/support/supervised.txt")
   end
