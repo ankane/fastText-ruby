@@ -29,16 +29,21 @@ namespace Rice::detail {
   template<>
   class To_Ruby<std::vector<std::pair<fasttext::real, std::string>>> {
   public:
+    explicit To_Ruby(Arg* arg) : arg_(arg) { }
+
     VALUE convert(std::vector<std::pair<fasttext::real, std::string>> const & x) {
       Array ret;
       for (const auto& v : x) {
         Array a;
-        a.push(v.first);
-        a.push(v.second);
-        ret.push(a);
+        a.push(v.first, false);
+        a.push(v.second, false);
+        ret.push(a, false);
       }
       return ret;
     }
+
+  private:
+    Arg* arg_ = nullptr;
   };
 } // namespace Rice::detail
 
@@ -115,13 +120,13 @@ void Init_ext() {
         Array vocab_list;
         Array vocab_freq;
         for (int32_t i = 0; i < d->nwords(); i++) {
-          vocab_list.push(d->getWord(i));
-          vocab_freq.push(freq[i]);
+          vocab_list.push(d->getWord(i), false);
+          vocab_freq.push(freq[i], false);
         }
 
         Array ret;
-        ret.push(vocab_list);
-        ret.push(vocab_freq);
+        ret.push(vocab_list, false);
+        ret.push(vocab_freq, false);
         return ret;
       })
     .define_method(
@@ -133,13 +138,13 @@ void Init_ext() {
         Array vocab_list;
         Array vocab_freq;
         for (int32_t i = 0; i < d->nlabels(); i++) {
-          vocab_list.push(d->getLabel(i));
-          vocab_freq.push(freq[i]);
+          vocab_list.push(d->getLabel(i), false);
+          vocab_freq.push(freq[i], false);
         }
 
         Array ret;
-        ret.push(vocab_list);
-        ret.push(vocab_freq);
+        ret.push(vocab_list, false);
+        ret.push(vocab_freq, false);
         return ret;
       })
     .define_method(
@@ -154,9 +159,9 @@ void Init_ext() {
         ifs.close();
 
         Array ret;
-        ret.push(meter.nexamples());
-        ret.push(meter.precision());
-        ret.push(meter.recall());
+        ret.push(meter.nexamples(), false);
+        ret.push(meter.precision(), false);
+        ret.push(meter.recall(), false);
         return ret;
       })
     .define_method(
@@ -196,7 +201,7 @@ void Init_ext() {
         m.getWordVector(vec, word);
         Array ret;
         for (size_t i = 0; i < vec.size(); i++) {
-          ret.push(vec[i]);
+          ret.push(vec[i], false);
         }
         return ret;
       })
@@ -210,7 +215,7 @@ void Init_ext() {
 
         Array ret;
         for (const auto& subword : subwords) {
-          ret.push(subword);
+          ret.push(subword, false);
         }
         return ret;
       })
@@ -223,7 +228,7 @@ void Init_ext() {
         m.getSentenceVector(in, vec);
         Array ret;
         for (size_t i = 0; i < vec.size(); i++) {
-          ret.push(vec[i]);
+          ret.push(vec[i], false);
         }
         return ret;
       })
