@@ -18,8 +18,9 @@ task :check_license do
 end
 
 task :remove_ext do
-  path = "lib/fasttext/ext.bundle"
-  File.unlink(path) if File.exist?(path)
+  Dir["lib/fasttext/ext.{bundle,so}"].each do |path|
+    File.unlink(path)
+  end
 end
 
 Rake::Task["build"].enhance [:check_license, :remove_ext]
