@@ -5,3 +5,4 @@ gemspec
 gem "rake"
 gem "rake-compiler"
 gem "minitest"
+gem "ruby_memcheck", require: false
