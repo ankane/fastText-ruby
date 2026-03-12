@@ -32,12 +32,12 @@ namespace Rice::detail {
     explicit To_Ruby(Arg* arg) : arg_(arg) { }
 
     VALUE convert(const std::vector<std::pair<fasttext::real, std::string>>& x) {
-      Array ret;
+      auto ret = detail::protect(rb_ary_new2, x.size());
       for (const auto& v : x) {
-        Array a;
-        a.push(v.first, false);
-        a.push(v.second, false);
-        ret.push(a, false);
+        auto p1 = To_Ruby<fasttext::real>().convert(v.first);
+        auto p2 = To_Ruby<std::string>().convert(v.second);
+        auto a = detail::protect(rb_ary_new3, 2, p1, p2);
+        detail::protect(rb_ary_push, ret, a);
       }
       return ret;
     }
