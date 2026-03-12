@@ -31,7 +31,7 @@ namespace Rice::detail {
   public:
     explicit To_Ruby(Arg* arg) : arg_(arg) { }
 
-    VALUE convert(std::vector<std::pair<fasttext::real, std::string>> const & x) {
+    VALUE convert(const std::vector<std::pair<fasttext::real, std::string>>& x) {
       Array ret;
       for (const auto& v : x) {
         Array a;
