@@ -200,7 +200,8 @@ void Init_ext() {
         fasttext::Vector vec = fasttext::Vector(dimension);
         m.getWordVector(vec, word);
         Array ret;
-        for (size_t i = 0; i < vec.size(); i++) {
+        // fasttext::Vector uses int64_t for size and indexing
+        for (int64_t i = 0; i < vec.size(); i++) {
           ret.push(vec[i], false);
         }
         return ret;
@@ -227,7 +228,8 @@ void Init_ext() {
         fasttext::Vector vec = fasttext::Vector(dimension);
         m.getSentenceVector(in, vec);
         Array ret;
-        for (size_t i = 0; i < vec.size(); i++) {
+        // fasttext::Vector uses int64_t for size and indexing
+        for (int64_t i = 0; i < vec.size(); i++) {
           ret.push(vec[i], false);
         }
         return ret;
