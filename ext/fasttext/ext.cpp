@@ -121,7 +121,7 @@ void Init_ext() {
         Array vocab_freq;
         for (int32_t i = 0; i < d->nwords(); i++) {
           vocab_list.push(d->getWord(i), false);
-          vocab_freq.push(freq[i], false);
+          vocab_freq.push(freq.at(i), false);
         }
 
         Array ret;
@@ -139,7 +139,7 @@ void Init_ext() {
         Array vocab_freq;
         for (int32_t i = 0; i < d->nlabels(); i++) {
           vocab_list.push(d->getLabel(i), false);
-          vocab_freq.push(freq[i], false);
+          vocab_freq.push(freq.at(i), false);
         }
 
         Array ret;
