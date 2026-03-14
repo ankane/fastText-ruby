@@ -1,6 +1,7 @@
 // stdlib
 #include <cmath>
 #include <cstdint>
+#include <fstream>
 #include <memory>
 #include <sstream>
 #include <stdexcept>
@@ -12,7 +13,9 @@
 #include <args.h>
 #include <autotune.h>
 #include <densematrix.h>
+#include <dictionary.h>
 #include <fasttext.h>
+#include <meter.h>
 #include <real.h>
 #include <vector.h>
 
