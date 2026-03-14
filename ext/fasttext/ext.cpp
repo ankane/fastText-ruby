@@ -1,11 +1,11 @@
 // stdlib
 #include <cmath>
 #include <cstdint>
-#include <iterator>
 #include <memory>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <utility>
 #include <vector>
 
 // fasttext
