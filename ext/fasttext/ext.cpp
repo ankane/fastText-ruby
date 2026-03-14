@@ -26,8 +26,6 @@
 using fasttext::Args;
 using fasttext::FastText;
 
-using Rice::Array;
-
 namespace Rice::detail {
   template<>
   class To_Ruby<std::vector<std::pair<fasttext::real, std::string>>> {
@@ -120,14 +118,14 @@ void Init_ext() {
         std::shared_ptr<const fasttext::Dictionary> d = m.getDictionary();
         std::vector<int64_t> freq = d->getCounts(fasttext::entry_type::word);
 
-        Array vocab_list;
-        Array vocab_freq;
+        Rice::Array vocab_list;
+        Rice::Array vocab_freq;
         for (int32_t i = 0; i < d->nwords(); i++) {
           vocab_list.push(d->getWord(i), false);
           vocab_freq.push(freq.at(i), false);
         }
 
-        Array ret;
+        Rice::Array ret;
         ret.push(vocab_list, false);
         ret.push(vocab_freq, false);
         return ret;
@@ -138,14 +136,14 @@ void Init_ext() {
         std::shared_ptr<const fasttext::Dictionary> d = m.getDictionary();
         std::vector<int64_t> freq = d->getCounts(fasttext::entry_type::label);
 
-        Array vocab_list;
-        Array vocab_freq;
+        Rice::Array vocab_list;
+        Rice::Array vocab_freq;
         for (int32_t i = 0; i < d->nlabels(); i++) {
           vocab_list.push(d->getLabel(i), false);
           vocab_freq.push(freq.at(i), false);
         }
 
-        Array ret;
+        Rice::Array ret;
         ret.push(vocab_list, false);
         ret.push(vocab_freq, false);
         return ret;
@@ -161,7 +159,7 @@ void Init_ext() {
         m.test(ifs, k, 0.0, meter);
         ifs.close();
 
-        Array ret;
+        Rice::Array ret;
         ret.push(meter.nexamples(), false);
         ret.push(meter.precision(), false);
         ret.push(meter.recall(), false);
@@ -202,7 +200,7 @@ void Init_ext() {
         auto dimension = m.getDimension();
         fasttext::Vector vec = fasttext::Vector(dimension);
         m.getWordVector(vec, word);
-        Array ret;
+        Rice::Array ret;
         // fasttext::Vector uses int64_t for size and indexing
         for (int64_t i = 0; i < vec.size(); i++) {
           ret.push(vec[i], false);
@@ -217,7 +215,7 @@ void Init_ext() {
         std::shared_ptr<const fasttext::Dictionary> d = m.getDictionary();
         d->getSubwords(word, ngrams, subwords);
 
-        Array ret;
+        Rice::Array ret;
         for (const auto& subword : subwords) {
           ret.push(subword, false);
         }
@@ -230,7 +228,7 @@ void Init_ext() {
         auto dimension = m.getDimension();
         fasttext::Vector vec = fasttext::Vector(dimension);
         m.getSentenceVector(in, vec);
-        Array ret;
+        Rice::Array ret;
         // fasttext::Vector uses int64_t for size and indexing
         for (int64_t i = 0; i < vec.size(); i++) {
           ret.push(vec[i], false);
