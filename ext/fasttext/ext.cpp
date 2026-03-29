@@ -197,7 +197,7 @@ void Init_ext() {
     .define_method(
       "word_vector",
       [](FastText& m, const std::string& word) {
-        auto dimension = m.getDimension();
+        int dimension = m.getDimension();
         fasttext::Vector vec = fasttext::Vector(dimension);
         m.getWordVector(vec, word);
         Rice::Array ret;
@@ -225,7 +225,7 @@ void Init_ext() {
       "sentence_vector",
       [](FastText& m, const std::string& text) {
         std::istringstream in(text);
-        auto dimension = m.getDimension();
+        int dimension = m.getDimension();
         fasttext::Vector vec(dimension);
         m.getSentenceVector(in, vec);
         Rice::Array ret;
