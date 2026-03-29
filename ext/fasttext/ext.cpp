@@ -151,7 +151,7 @@ void Init_ext() {
     .define_method(
       "test",
       [](FastText& m, const std::string& filename, int32_t k) {
-        std::ifstream ifs(filename);
+        std::ifstream ifs{filename};
         if (!ifs.is_open()) {
           throw std::invalid_argument("Test file cannot be opened!");
         }
@@ -182,7 +182,7 @@ void Init_ext() {
     .define_method(
       "predict",
       [](FastText& m, const std::string& text, int32_t k, float threshold) {
-        std::stringstream ioss(text);
+        std::stringstream ioss{text};
         std::vector<std::pair<fasttext::real, std::string>> predictions;
         m.predictLine(ioss, predictions, k, threshold);
         return predictions;
@@ -198,7 +198,7 @@ void Init_ext() {
       "word_vector",
       [](FastText& m, const std::string& word) {
         int dimension = m.getDimension();
-        fasttext::Vector vec = fasttext::Vector(dimension);
+        fasttext::Vector vec{dimension};
         m.getWordVector(vec, word);
         Rice::Array ret;
         // fasttext::Vector uses int64_t for size and indexing
@@ -224,9 +224,9 @@ void Init_ext() {
     .define_method(
       "sentence_vector",
       [](FastText& m, const std::string& text) {
-        std::istringstream in(text);
+        std::istringstream in{text};
         int dimension = m.getDimension();
-        fasttext::Vector vec(dimension);
+        fasttext::Vector vec{dimension};
         m.getSentenceVector(in, vec);
         Rice::Array ret;
         // fasttext::Vector uses int64_t for size and indexing
@@ -239,7 +239,7 @@ void Init_ext() {
       "train",
       [](FastText& m, Args& a) {
         if (a.hasAutotune()) {
-          fasttext::Autotune autotune(std::shared_ptr<fasttext::FastText>(&m, [](fasttext::FastText*) {}));
+          fasttext::Autotune autotune{std::shared_ptr<fasttext::FastText>(&m, [](fasttext::FastText*) {})};
           autotune.train(a);
         } else {
           m.train(a);
