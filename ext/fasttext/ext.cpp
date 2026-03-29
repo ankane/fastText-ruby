@@ -33,11 +33,11 @@ namespace Rice::detail {
     explicit To_Ruby(Arg* arg) : arg_(arg) { }
 
     VALUE convert(const std::vector<std::pair<fasttext::real, std::string>>& x) {
-      auto ret = detail::protect(rb_ary_new2, x.size());
+      VALUE ret = detail::protect(rb_ary_new2, x.size());
       for (const auto& v : x) {
-        auto p1 = To_Ruby<fasttext::real>().convert(v.first);
-        auto p2 = To_Ruby<std::string>().convert(v.second);
-        auto a = detail::protect(rb_ary_new3, 2, p1, p2);
+        VALUE p1 = To_Ruby<fasttext::real>().convert(v.first);
+        VALUE p2 = To_Ruby<std::string>().convert(v.second);
+        VALUE a = detail::protect(rb_ary_new3, 2, p1, p2);
         detail::protect(rb_ary_push, ret, a);
       }
       return ret;
@@ -226,7 +226,7 @@ void Init_ext() {
       [](FastText& m, const std::string& text) {
         std::istringstream in(text);
         auto dimension = m.getDimension();
-        fasttext::Vector vec = fasttext::Vector(dimension);
+        fasttext::Vector vec(dimension);
         m.getSentenceVector(in, vec);
         Rice::Array ret;
         // fasttext::Vector uses int64_t for size and indexing
