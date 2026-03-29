@@ -167,13 +167,13 @@ void Init_ext() {
       })
     .define_method(
       "load_model",
-      [](FastText& m, const std::string& s) {
-        m.loadModel(s);
+      [](FastText& m, const std::string& filename) {
+        m.loadModel(filename);
       })
     .define_method(
       "save_model",
-      [](FastText& m, const std::string& s) {
-        m.saveModel(s);
+      [](FastText& m, const std::string& filename) {
+        m.saveModel(filename);
       })
     .define_method("dimension", &FastText::getDimension)
     .define_method("quantized?", &FastText::isQuant)
