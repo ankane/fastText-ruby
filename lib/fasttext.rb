@@ -23,7 +23,7 @@ module FastText
         else
           FastText::Vectorizer.new
         end
-      model.instance_variable_set("@m", m)
+      model.instance_variable_set(:@m, m)
       model
     end
 
