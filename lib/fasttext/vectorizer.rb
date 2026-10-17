@@ -36,11 +36,11 @@ module FastText
     end
 
     def nearest_neighbors(word, k: 10)
-      m.nearest_neighbors(word, k).map(&:reverse).to_h
+      m.nearest_neighbors(word, k).to_h(&:reverse)
     end
 
     def analogies(word_a, word_b, word_c, k: 10)
-      m.analogies(k, word_a, word_b, word_c).map(&:reverse).to_h
+      m.analogies(k, word_a, word_b, word_c).to_h(&:reverse)
     end
 
     private
